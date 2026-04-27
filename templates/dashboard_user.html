@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="navbar">
+    Welcome, {{ user }} |
+    <a href="/logout" style="color:red;">Logout</a>
+</div>
+
+<div class="dashboard">
+    <h1>👤 User Dashboard</h1>
+
+    <div class="card">📊 Activity: Normal User</div>
+    <div class="card">📁 Files: 12</div>
+    <div class="card">🔒 Access Level: Limited</div>
+
+    <p>Welcome to your personal dashboard. You have restricted access.</p>
+</div>
+
+</body>
+</html>

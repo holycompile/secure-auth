@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="navbar">
+    Admin: {{ user }} |
+    <a href="/logout" style="color:red;">Logout</a>
+</div>
+
+<div class="dashboard">
+    <h1>🛠 Admin Control Panel</h1>
+
+    <div class="card">👥 Total Users: 5</div>
+    <div class="card">⚠ Failed Logins: 2</div>
+    <div class="card">🔐 System Status: Secure</div>
+
+    <p>You have full administrative access.</p>
+</div>
+
+</body>
+</html>

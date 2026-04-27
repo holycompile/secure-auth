@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cypher Security</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+    <a href="/login">Login</a>
+    <a href="/register">Register</a>
+</div>
+
+<!-- HERO SECTION -->
+<div class="hero">
+    <h1>! Cypher !</h1>
+    <h3>The Simple Security System</h3>
+    <p>
+        A lightweight authentication and access control system designed to demonstrate
+        secure login, role-based access, and session management.
+    </p>
+
+    <div class="buttons">
+        <a href="/login"><button>Login</button></a>
+        <a href="/register"><button>Register</button></a>
+    </div>
+</div>
+
+<!-- INSTRUCTION   -->
+<div class="section">
+    <h2>🧭 Instructions </h2>
+
+    <div class="card">
+        <b>1️⃣ Register</b><br>
+        Create a new account using the Register page with your username and password.
+    </div>
+
+    <div class="card">
+        <b>2️⃣ Login</b><br>
+        Use your registered credentials to log into the system.
+    </div>
+
+    <div class="card">
+        <b>3️⃣ Access Dashboard</b><br>
+        After login, you will be redirected to your dashboard based on your role.
+    </div>
+
+    <div class="card">
+        <b>4️⃣ Try Admin Access</b><br>
+        Attempt to access the Admin panel. Only admin users will be allowed.
+    </div>
+
+    <div class="card">
+        <b>5️⃣ Logout</b><br>
+        Logout and try accessing protected pages again to verify security.
+    </div>
+</div>
+
+
+
+<!-- ABOUT PROJECT -->
+<div class="section">
+    <h2>📌 About This Project</h2>
+    <p>
+        This project demonstrates how authentication and access control work in a system.
+        Users can register, login securely, and access resources based on their roles.
+    </p>
+</div>
+
+<!-- FEATURES -->
+<div class="section">
+    <h2>⚙️ Features</h2>
+    <div class="card">🔐 Secure Password Hashing (bcrypt)</div>
+    <div class="card">👥 Role-Based Access (Admin/User)</div>
+    <div class="card">🧠 Session Management</div>
+    <div class="card">🚪 Login & Logout System</div>
+</div>
+
+<!-- TECH STACK -->
+<div class="section">
+    <h2>🛠 Built With</h2>
+    <div class="card">🐍 Python (Flask)</div>
+    <div class="card">🗄 SQLite Database</div>
+    <div class="card">🎨 HTML + CSS</div>
+</div>
+
+<!-- LIMITATIONS -->
+<div class="section">
+    <h2>⚠️ Limitations of This Project</h2>
+
+    <div class="card">
+        <b>🔒 Basic Authentication Only</b><br>
+        This project uses simple username-password authentication and does not include advanced methods like OAuth, Multi-Factor Authentication (MFA), or biometrics. Same user cannot change password, create new passwords or delete account.   
+    </div>
+
+    <div class="card">
+        <b>🛡️ Limited Security Features</b><br>
+        While passwords are hashed, the system does not include protections like rate limiting, CAPTCHA, or brute-force attack prevention.
+    </div>
+
+    <div class="card">
+        <b>👥 No User Management System</b><br>
+        Admin cannot currently manage users (edit roles, delete users, etc.).
+    </div>
+
+    <div class="card">
+        <b>🌐 Not Production Ready</b><br>
+        This is a learning/demo project and lacks deployment-level security configurations.
+    </div>
+
+    <div class="card">
+        <b>📦 Uses SQLite Only</b><br>
+        SQLite is suitable for small-scale apps but not ideal for large, scalable systems.
+    </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+    <p>Cypher © 2026 | Security Project</p>
+</div>
+
+</body>
+</html>
