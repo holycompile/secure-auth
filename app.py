@@ -101,7 +101,8 @@ def dashboard():
 #Logout route
 @app.route("/logout")
 def logout():
-    session.pop("role", None)  # Remove user from session
+    session.pop("user", None)  # Remove user from session
+    session.pop("role", None)  # Remove role from session
     return redirect("/login")
 
 #Admin route (placeholder)
