@@ -21,6 +21,9 @@ def init_db():
 app = Flask(__name__)
 app.secret_key = "supersecretkey"  # Needed for session management
 
+init_db()
+
+
 # Home route
 @app.route("/")
 def home():
@@ -113,6 +116,6 @@ def admin():
 
 # Run the server
 if __name__ == "__main__":
-    init_db()
+    
     app.run(debug=True)
 
