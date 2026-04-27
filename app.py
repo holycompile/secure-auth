@@ -13,6 +13,18 @@ def init_db():
         role TEXT DEFAULT 'user'
     )
     """)
+    
+    cursor.execute("SELECT * FROM users WHERE username=?", ("admin",))
+    admin = cursor.fetchone()
+
+    if not admin:
+        import bcrypt
+        hashed_password = bcrypt.hashpw("admin123".encode("utf-8"), bcrypt.gensalt())
+
+        cursor.execute(
+            "INSERT INTO users (username, password, role) VALUES (?, ?, ?)",
+            ("admin", hashed_password, "admin")
+        )
 
     conn.commit()
     conn.close()
