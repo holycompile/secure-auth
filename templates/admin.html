@@ -1,2 +1,64 @@
-<h2>Admin Only Area</h2>
-<p>Superuser privileges granted.</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Security Logs - Cypher Security</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="navbar">
+    <a href="/" class="navbar-brand">🔐 Cypher Logs</a>
+    <div class="navbar-links">
+        <a href="/dashboard">Back to Dashboard</a>
+        <a href="/logout" style="color: var(--error);">Logout</a>
+    </div>
+</div>
+
+<div class="dashboard">
+    <div class="dashboard-header">
+        <h1>🛡️ Security & Login Logs</h1>
+    </div>
+
+    <div class="card" style="width: 100%;">
+        <div class="card-title">📋 Authentication History</div>
+        <p class="card-desc" style="margin-bottom: 1.5rem;">Showing the last 50 login attempts to the system, including successful and blocked rates.</p>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Log ID</th>
+                        <th>Username Attempted</th>
+                        <th>Timestamp (UTC)</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for log in logs %}
+                    <tr>
+                        <td>#{{ log[0] }}</td>
+                        <td><b>{{ log[1] }}</b></td>
+                        <td>{{ log[2] }}</td>
+                        <td>
+                            {% if log[3] == 'success' %}
+                            <span class="badge badge-success">Success</span>
+                            {% else %}
+                            <span class="badge badge-failed">Failed</span>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td colspan="4" style="text-align: center; color: var(--text-muted);">No login logs available yet.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,25 +1,52 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Login</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Cypher Security</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+    <a href="/" class="navbar-brand">🔐 Cypher</a>
+    <div class="navbar-links">
+        <a href="/">Home</a>
+        <a href="/register">Register</a>
+    </div>
+</div>
 
 <div class="container">
     <h2>🔐 Secure Login</h2>
 
     {% if error %}
-    <p class="error">{{ error }}</p>
+    <div class="error">
+        <span>{{ error }}</span>
+    </div>
     {% endif %}
 
     <form method="POST">
-        <input type="text" name="username" placeholder="Username" required><br>
-        <input type="password" name="password" placeholder="Password" required><br>
-        <button type="submit">Login</button>
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" placeholder="Enter username" required autocomplete="username">
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" placeholder="Enter password" required autocomplete="current-password">
+        </div>
+        <button type="submit">Sign In</button>
     </form>
 
-    <p>Don't have an account? <a href="/register" style="color:lightblue;">Register</a></p>
+    <p style="margin-top: 1.5rem; font-size: 0.95rem; color: var(--text-muted);">
+        Don't have an account? <a href="/register">Register here</a>
+    </p>
+
+    <div style="margin-top: 1.5rem; padding: 0.85rem; background: rgba(99, 102, 241, 0.08); border: 1px dashed var(--border); border-radius: 8px; font-size: 0.9rem; text-align: left; line-height: 1.6;">
+        💡 <b>Demo Access:</b><br>
+        Admin Username: <code style="color: #a5b4fc; font-weight: 600;">admin</code><br>
+        Admin Password: <code style="color: #a5b4fc; font-weight: 600;">admin123</code>
+    </div>
 </div>
 
 </body>

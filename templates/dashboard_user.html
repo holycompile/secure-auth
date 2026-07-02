@@ -1,24 +1,80 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>User Dashboard</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard - Cypher Security</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
 
 <div class="navbar">
-    Welcome, {{ user }} |
-    <a href="/logout" style="color:red;">Logout</a>
+    <a href="/" class="navbar-brand">🔐 Cypher</a>
+    <div class="navbar-links">
+        <span class="navbar-user">Logged in as: <b>{{ user }}</b> <span class="badge badge-user">User</span></span>
+        <a href="/logout" style="color: var(--error);">Logout</a>
+    </div>
 </div>
 
 <div class="dashboard">
-    <h1>👤 User Dashboard</h1>
+    <div class="dashboard-header">
+        <h1>👤 User Dashboard</h1>
+    </div>
 
-    <div class="card">📊 Activity: Normal User</div>
-    <div class="card">📁 Files: 12</div>
-    <div class="card">🔒 Access Level: Limited</div>
+    <!-- Alert Messages (Flashed from backend) -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="{{ category }}">
+                    <span>{{ message }}</span>
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
 
-    <p>Welcome to your personal dashboard. You have restricted access.</p>
+    <div class="metrics-grid">
+        <div class="metric-card">
+            <div class="metric-label">Account Activity</div>
+            <div class="metric-value" style="font-size: 1.5rem; color: var(--success);">Normal User</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-label">Assigned Assets</div>
+            <div class="metric-value">12 Files</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-label">Access Level</div>
+            <div class="metric-value" style="font-size: 1.5rem; color: var(--warning);">Limited</div>
+        </div>
+    </div>
+
+    <div class="grid-2">
+        <div class="card">
+            <div class="card-title">🔐 Security Information</div>
+            <p class="card-desc">
+                Your account is currently in a restricted group. This environment uses active session monitoring.
+                You can browse public information or manage your credentials here.
+            </p>
+        </div>
+
+        <div class="card">
+            <div class="card-title">⚙️ Update Password</div>
+            <form action="/change_password" method="POST" style="margin-top: 1rem;">
+                <div class="form-group">
+                    <label for="current_password">Current Password</label>
+                    <input type="password" id="current_password" name="current_password" required>
+                </div>
+                <div class="form-group">
+                    <label for="new_password">New Password</label>
+                    <input type="password" id="new_password" name="new_password" required>
+                </div>
+                <div class="form-group">
+                    <label for="confirm_password">Confirm New Password</label>
+                    <input type="password" id="confirm_password" name="confirm_password" required>
+                </div>
+                <button type="submit" class="btn-sm">Change Password</button>
+            </form>
+        </div>
+    </div>
 </div>
 
 </body>

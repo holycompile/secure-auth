@@ -1,20 +1,25 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Cypher Security</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cypher Security - Access Management</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
 
 <!-- NAVBAR -->
 <div class="navbar">
-    <a href="/login">Login</a>
-    <a href="/register">Register</a>
+    <a href="/" class="navbar-brand">🔐 Cypher</a>
+    <div class="navbar-links">
+        <a href="/login">Login</a>
+        <a href="/register">Register</a>
+    </div>
 </div>
 
 <!-- HERO SECTION -->
 <div class="hero">
-    <h1>! Cypher !</h1>
+    <h1>Cypher Security</h1>
     <h3>The Simple Security System</h3>
     <p>
         A lightweight authentication and access control system designed to demonstrate
@@ -22,103 +27,99 @@
     </p>
 
     <div class="buttons">
-        <a href="/login"><button>Login</button></a>
-        <a href="/register"><button>Register</button></a>
-        <a href="/login"><button>Admin Login</button></a>
+        <a href="/login"><button>Sign In</button></a>
+        <a href="/register"><button class="btn-secondary">Create Account</button></a>
     </div>
+    <p style="font-size: 0.9rem; margin-top: 1.25rem; color: var(--text-muted);">
+        💡 <b>Demo Admin:</b> Username: <code style="color: var(--primary);">admin</code> | Password: <code style="color: var(--primary);">admin123</code>
+    </p>
 </div>
 
-<!-- INSTRUCTION   -->
+<!-- INSTRUCTION -->
 <div class="section">
-    <h2>🧭 Instructions </h2>
+    <h2>🧭 Instructions</h2>
+    <div class="grid-3">
+        <div class="card">
+            <div class="card-title">1️⃣ Register</div>
+            <div class="card-desc">Create a new account using the Register page with your username and password.</div>
+        </div>
 
-    <div class="card">
-        <b>1️⃣ Register</b><br>
-        Create a new account using the Register page with your username and password.
-    </div>
+        <div class="card">
+            <div class="card-title">2️⃣ Login</div>
+            <div class="card-desc">Use your registered credentials to log into the system securely.</div>
+        </div>
 
-    <div class="card">
-        <b>2️⃣ Login</b><br>
-        Use your registered credentials to log into the system.
-    </div>
+        <div class="card">
+            <div class="card-title">3️⃣ Dashboard</div>
+            <div class="card-desc">After login, you will be redirected to your dashboard based on your role (User/Admin).</div>
+        </div>
 
-    <div class="card">
-        <b>3️⃣ Access Dashboard</b><br>
-        After login, you will be redirected to your dashboard based on your role.
-    </div>
+        <div class="card">
+            <div class="card-title">4️⃣ Admin Access</div>
+            <div class="card-desc">Attempt to access the Admin panel. Only admin users will be allowed entry.</div>
+        </div>
 
-    <div class="card">
-        <b>4️⃣ Try Admin Access</b><br>
-        Attempt to access the Admin panel. Only admin users will be allowed.
-    </div>
-
-    <div class="card">
-        <b>5️⃣ Logout</b><br>
-        Logout and try accessing protected pages again to verify security.
+        <div class="card">
+            <div class="card-title">5️⃣ Logout</div>
+            <div class="card-desc">Logout and try accessing protected pages again to verify active session security.</div>
+        </div>
     </div>
 </div>
-
-
 
 <!-- ABOUT PROJECT -->
 <div class="section">
     <h2>📌 About This Project</h2>
-    <p>
-        This project demonstrates how authentication and access control work in a system.
-        Users can register, login securely, and access resources based on their roles.
-    </p>
+    <div class="card" style="width: 100%;">
+        <div class="card-desc" style="font-size: 1.1rem; line-height: 1.6;">
+            This project demonstrates how authentication, session control, and access levels operate.
+            Users can register, login securely, and access resources based on their assigned roles, showing robust, clean development.
+        </div>
+    </div>
 </div>
 
 <!-- FEATURES -->
 <div class="section">
     <h2>⚙️ Features</h2>
-    <div class="card">🔐 Secure Password Hashing (bcrypt)</div>
-    <div class="card">👥 Role-Based Access (Admin/User)</div>
-    <div class="card">🧠 Session Management</div>
-    <div class="card">🚪 Login & Logout System</div>
-</div>
-
-<!-- TECH STACK -->
-<div class="section">
-    <h2>🛠 Built With</h2>
-    <div class="card">🐍 Python (Flask)</div>
-    <div class="card">🗄 SQLite Database</div>
-    <div class="card">🎨 HTML + CSS</div>
+    <div class="grid-3">
+        <div class="card">
+            <div class="card-title">🔐 Secure Password Hashing</div>
+            <div class="card-desc">Utilizes bcrypt with salt generation to securely store credentials.</div>
+        </div>
+        <div class="card">
+            <div class="card-title">👥 Role-Based Access</div>
+            <div class="card-desc">Separates privileges between general Users and System Administrators.</div>
+        </div>
+        <div class="card">
+            <div class="card-title">🧠 Session Management</div>
+            <div class="card-desc">Tracks user logins via secure cookie-based session states.</div>
+        </div>
+    </div>
 </div>
 
 <!-- LIMITATIONS -->
 <div class="section">
-    <h2>⚠️ Limitations of This Project</h2>
+    <h2>⚠️ Limitations & Improvements</h2>
+    <div class="grid-3">
+        <div class="card">
+            <div class="card-title">🔒 Basic Authentication</div>
+            <div class="card-desc">Uses basic user/password auth. In this version, we've integrated **password updates** from the dashboard.</div>
+        </div>
 
-    <div class="card">
-        <b>🔒 Basic Authentication Only</b><br>
-        This project uses simple username-password authentication and does not include advanced methods like OAuth, Multi-Factor Authentication (MFA), or biometrics. Same user cannot change password, create new passwords or delete account.   
-    </div>
+        <div class="card">
+            <div class="card-title">🛡️ Security Logs & Limits</div>
+            <div class="card-desc">Now includes **brute-force protection** (locks user attempts after 5 failures) and **login logs**.</div>
+        </div>
 
-    <div class="card">
-        <b>🛡️ Limited Security Features</b><br>
-        While passwords are hashed, the system does not include protections like rate limiting, CAPTCHA, or brute-force attack prevention.
-    </div>
-
-    <div class="card">
-        <b>👥 No User Management System</b><br>
-        Admin cannot currently manage users (edit roles, delete users, etc.).
-    </div>
-
-    <div class="card">
-        <b>🌐 Not Production Ready</b><br>
-        This is a learning/demo project and lacks deployment-level security configurations.
-    </div>
-
-    <div class="card">
-        <b>📦 Uses SQLite Only</b><br>
-        SQLite is suitable for small-scale apps but not ideal for large, scalable systems.
+        <div class="card">
+            <div class="card-title">👥 Admin Control Panel</div>
+            <div class="card-desc">Features a new **User Management Dashboard** allowing admins to promote/demote roles or delete users.</div>
+        </div>
     </div>
 </div>
 
 <!-- FOOTER -->
 <div class="footer">
-    <p>Cypher © 2026 | Security Project</p>
+    <p>Cypher © 2026 | Built for Demo & Security Learning</p>
 </div>
 
 </body>

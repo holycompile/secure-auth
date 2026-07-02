@@ -1,24 +1,101 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Admin Dashboard</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Cypher Security</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
 
 <div class="navbar">
-    Admin: {{ user }} |
-    <a href="/logout" style="color:red;">Logout</a>
+    <a href="/" class="navbar-brand">🔐 Cypher Control</a>
+    <div class="navbar-links">
+        <span class="navbar-user">Administrator: <b>{{ user }}</b> <span class="badge badge-admin">Admin</span></span>
+        <a href="/admin/logs">Security Logs</a>
+        <a href="/logout" style="color: var(--error);">Logout</a>
+    </div>
 </div>
 
 <div class="dashboard">
-    <h1>🛠 Admin Control Panel</h1>
+    <div class="dashboard-header">
+        <h1>🛠 Admin Control Panel</h1>
+    </div>
 
-    <div class="card">👥 Total Users: 5</div>
-    <div class="card">⚠ Failed Logins: 2</div>
-    <div class="card">🔐 System Status: Secure</div>
+    <!-- Metrics Grid -->
+    <div class="metrics-grid">
+        <div class="metric-card">
+            <div class="metric-label">Total Users</div>
+            <div class="metric-value">{{ total_users }}</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-label">Failed Logins (All Time)</div>
+            <div class="metric-value" style="color: var(--error);">{{ failed_logins }}</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-label">System Status</div>
+            <div class="metric-value" style="color: var(--success); font-size: 1.5rem;">SECURE</div>
+        </div>
+    </div>
 
-    <p>You have full administrative access.</p>
+    <div class="grid-3" style="margin-bottom: 2rem;">
+        <div class="card" style="grid-column: span 2;">
+            <div class="card-title">👥 User Management</div>
+            <p class="card-desc" style="margin-bottom: 1rem;">View and manage registered accounts, switch roles, or delete inactive/unauthorized users.</p>
+            
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Username</th>
+                            <th>Role</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for u in users %}
+                        <tr>
+                            <td>{{ u[0] }}</td>
+                            <td><b>{{ u[1] }}</b></td>
+                            <td>
+                                {% if u[2] == 'admin' %}
+                                <span class="badge badge-admin">Admin</span>
+                                {% else %}
+                                <span class="badge badge-user">User</span>
+                                {% endif %}
+                            </td>
+                            <td class="actions-cell">
+                                {% if u[1] != 'admin' %}
+                                <form action="/admin/toggle_role/{{ u[0] }}" method="POST" style="display:inline;">
+                                    <button type="submit" class="btn-sm btn-warning">Toggle Role</button>
+                                </form>
+                                {% if u[1] != user %}
+                                <form action="/admin/delete_user/{{ u[0] }}" method="POST" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete user {{ u[1] }}?');">
+                                    <button type="submit" class="btn-sm btn-danger">Delete</button>
+                                </form>
+                                {% endif %}
+                                {% else %}
+                                <span style="font-size: 0.85rem; color: var(--text-muted); font-style: italic;">Protected</span>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">🛡️ Security & Logs</div>
+            <p class="card-desc">
+                Review detailed user activities, connection status, rates, and authentication logs to inspect potential security events.
+            </p>
+            <a href="/admin/logs" style="display: block; margin-top: 1.5rem;">
+                <button class="btn-secondary">View Audit Logs →</button>
+            </a>
+        </div>
+    </div>
 </div>
 
 </body>
